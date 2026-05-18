@@ -73,7 +73,44 @@ document.addEventListener('DOMContentLoaded', () => {
         if (window.scrollY > 50) {
             navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.05)';
+            navbar.style.boxShadow = '0 1px 0 rgba(0,0,0,0.05)';
         }
+    });
+
+    // --- Counter Animation ---
+    const counters = document.querySelectorAll('.counter');
+    const speed = 150; // Slower, more elegant counting
+
+    const startCounters = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                const target = +counter.getAttribute('data-target');
+                
+                const updateCount = () => {
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+                observer.unobserve(counter);
+            }
+        });
+    };
+
+    const counterObserver = new IntersectionObserver(startCounters, {
+        root: null,
+        threshold: 0.5,
+    });
+
+    counters.forEach(counter => {
+        counterObserver.observe(counter);
     });
 });
