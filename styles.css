@@ -226,7 +226,7 @@ ul {
 .hero-bg {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-image: url('photos.jpeg');
+    background-image: url('images/photos.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
