@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galerie Photos - Association Tagmout n'Aït Oumzil</title>
+    <meta name="description" content="Découvrez les photos du village de Tagmout n'Aït Oumzil, nos réalisations, paysages, fêtes et vie quotidienne.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="styles.css?v=2.0">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.webp" alt="Logo Association Tagmout n'Aït Oumzil">
+                <span>Association Tagmout n'Aït Oumzil</span>
+            </a>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-links">Accueil</a></li>
+                <li><a href="qui-sommes-nous.html" class="nav-links">Qui Sommes-Nous ?</a></li>
+                <li><a href="realisations.html" class="nav-links">Réalisations</a></li>
+                <li><a href="galerie.html" class="nav-links">Galerie</a></li>
+                <li><a href="projets-d-avenir.html" class="nav-links">Projets d'Avenir</a></li>
+                <li><a href="contact.html" class="nav-links">Contact & Partenariat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="page-header-content">
+            <h1>Galerie Photos</h1>
+            <p>Retrouvez en images la vie de notre Douar et les projets de l'Association</p>
+        </div>
+    </header>
+
+    <!-- Galerie Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Galerie Filters -->
+            <div class="gallery-filters scroll-reveal">
+                <button class="filter-btn active" data-filter="all">Tous</button>
+                <button class="filter-btn" data-filter="eau">💧 Hydraulique / Eau</button>
+                <button class="filter-btn" data-filter="environnement">🌱 Environnement / Nature</button>
+                <button class="filter-btn" data-filter="education">🎓 Éducation / Enseignement</button>
+                <button class="filter-btn" data-filter="religion">🕌 Religion / Culte</button>
+                <button class="filter-btn" data-filter="routes">🛣️ Routes / Sentiers</button>
+                <button class="filter-btn" data-filter="tourisme">🏔️ Tourisme</button>
+                <button class="filter-btn" data-filter="festivites">🎉 Festivités</button>
+                <button class="filter-btn" data-filter="autres">📷 Autres</button>
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid"></div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <span class="lightbox-prev">&#10094;</span>
+        <img class="lightbox-content" id="lightbox-img" alt="Vue agrandie">
+        <span class="lightbox-next">&#10095;</span>
+        <div id="lightbox-caption" class="lightbox-caption"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Association Tagmout n'Aït Oumzil. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script src="script.js?v=2.0"></script>
+</body>
+</html>
