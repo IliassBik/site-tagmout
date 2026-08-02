@@ -138,9 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const filterBtns = document.querySelectorAll('.filter-btn');
 
     if (galleryGrid) {
-        const categories = ["eau", "environnement", "education", "religion", "routes", "tourisme", "festivites", "autres"];
-        const extensions = ["webp", "jpg", "jpeg", "png"];
-        
         const categoryNames = {
             'eau': 'Hydraulique / Eau',
             'environnement': 'Environnement / Nature',
@@ -152,9 +149,23 @@ document.addEventListener('DOMContentLoaded', () => {
             'autres': 'Autres'
         };
 
+        const categoryImages = {
+            'eau': ['1.webp'],
+            'environnement': ['1.webp'],
+            'education': ['1.webp'],
+            'religion': ['mosquee.webp'],
+            'routes': ['1.webp'],
+            'tourisme': ['1.webp'],
+            'festivites': ['1.webp'],
+            'autres': []
+        };
+
         function getCaption(category, imgSrc) {
             const filename = imgSrc.split('/').pop().split('.')[0];
             const catName = categoryNames[category] || category;
+            if (filename === 'mosquee') {
+                return "Mosquée de Tagmout";
+            }
             if (filename === '1' || !isNaN(filename)) {
                 return catName;
             }
@@ -163,56 +174,23 @@ document.addEventListener('DOMContentLoaded', () => {
             return `${catName} : ${formattedName}`;
         }
 
-        // Load images sequentially for each category
-        categories.forEach(category => {
-            let index = 1;
-            
-            function tryNextImage() {
-                let extIndex = 0;
+        // Load images for each category
+        for (const [category, files] of Object.entries(categoryImages)) {
+            files.forEach(filename => {
+                const imgSrc = `images/galerie/${category}/${filename}`;
+                const caption = getCaption(category, imgSrc);
+                const col = document.createElement('div');
+                col.className = 'gallery-item scroll-reveal visible';
+                col.setAttribute('data-category', category);
                 
-                function tryExtension() {
-                    if (extIndex >= extensions.length) {
-                        // All extensions failed for this index, stop for this category
-                        return;
-                    }
-                    
-                    const ext = extensions[extIndex];
-                    const imgSrc = `images/galerie/${category}/${index}.${ext}`;
-                    const img = new Image();
-                    
-                    img.onload = function() {
-                        // Image successfully loaded! Create elements
-                        const caption = getCaption(category, imgSrc);
-                        const col = document.createElement('div');
-                        col.className = 'gallery-item scroll-reveal visible';
-                        col.setAttribute('data-category', category);
-                        
-                        col.innerHTML = `
-                            <img src="${imgSrc}" alt="${caption}">
-                            <div class="gallery-overlay"><span>${caption}</span></div>
-                        `;
-                        
-                        galleryGrid.appendChild(col);
-                        
-                        // Increment and load the next image in this category
-                        index++;
-                        tryNextImage();
-                    };
-                    
-                    img.onerror = function() {
-                        // This extension failed, try the next extension
-                        extIndex++;
-                        tryExtension();
-                    };
-                    
-                    img.src = imgSrc;
-                }
+                col.innerHTML = `
+                    <img src="${imgSrc}" alt="${caption}">
+                    <div class="gallery-overlay"><span>${caption}</span></div>
+                `;
                 
-                tryExtension();
-            }
-            
-            tryNextImage();
-        });
+                galleryGrid.appendChild(col);
+            });
+        }
     }
 
     // Gallery Filtering Event Listeners
