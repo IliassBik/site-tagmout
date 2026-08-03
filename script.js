@@ -141,12 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
         const categoryNames = {
             'eau': 'Hydraulique / Eau',
             'environnement': 'Environnement / Nature',
-            'education': 'Éducation',
+            'education': 'Éducation / Enseignement',
             'religion': 'Religion',
             'routes': 'Routes / Sentiers',
             'tourisme': 'Tourisme',
             'festivites': 'Festivités',
             'autres': 'Autres'
+        };
+
+        const categoryIcons = {
+            'eau': '💧',
+            'environnement': '🌱',
+            'education': '🎓',
+            'religion': '🕌',
+            'routes': '🛣️',
+            'tourisme': '🏔️',
+            'festivites': '🎉',
+            'autres': '📷'
         };
 
         const categoryImages = {
@@ -174,23 +185,138 @@ document.addEventListener('DOMContentLoaded', () => {
             return `${catName} : ${formattedName}`;
         }
 
-        // Load images for each category
+        // Generate slideshows for each category
         for (const [category, files] of Object.entries(categoryImages)) {
-            files.forEach(filename => {
+            if (files.length === 0) continue;
+
+            const catName = categoryNames[category] || category;
+            const icon = categoryIcons[category] || '📷';
+
+            const section = document.createElement('div');
+            section.className = 'theme-slideshow-section scroll-reveal visible';
+            section.setAttribute('data-category', category);
+
+            const header = document.createElement('h3');
+            header.innerHTML = `${icon} ${catName}`;
+            section.appendChild(header);
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'slideshow-wrapper';
+
+            const slidesContainer = document.createElement('div');
+            slidesContainer.className = 'slideshow-container';
+
+            files.forEach((filename, idx) => {
                 const imgSrc = `images/galerie/${category}/${filename}`;
                 const caption = getCaption(category, imgSrc);
-                const col = document.createElement('div');
-                col.className = 'gallery-item scroll-reveal visible';
-                col.setAttribute('data-category', category);
-                
-                col.innerHTML = `
+
+                const slide = document.createElement('div');
+                slide.className = `slide gallery-item${idx === 0 ? ' active' : ''}`;
+                slide.style.display = idx === 0 ? 'block' : 'none';
+                slide.setAttribute('data-category', category);
+
+                slide.innerHTML = `
                     <img src="${imgSrc}" alt="${caption}">
-                    <div class="gallery-overlay"><span>${caption}</span></div>
+                    <div class="gallery-overlay" style="display: none;"><span>${caption}</span></div>
                 `;
-                
-                galleryGrid.appendChild(col);
+                slidesContainer.appendChild(slide);
             });
+
+            wrapper.appendChild(slidesContainer);
+
+            if (files.length > 1) {
+                const prevBtn = document.createElement('button');
+                prevBtn.className = 'slide-nav prev';
+                prevBtn.innerHTML = '&#10094;';
+                wrapper.appendChild(prevBtn);
+
+                const nextBtn = document.createElement('button');
+                nextBtn.className = 'slide-nav next';
+                nextBtn.innerHTML = '&#10095;';
+                wrapper.appendChild(nextBtn);
+
+                const dotsContainer = document.createElement('div');
+                dotsContainer.className = 'slide-dots';
+                files.forEach((_, idx) => {
+                    const dot = document.createElement('button');
+                    dot.className = `slide-dot${idx === 0 ? ' active' : ''}`;
+                    dotsContainer.appendChild(dot);
+                });
+                wrapper.appendChild(dotsContainer);
+            }
+
+            section.appendChild(wrapper);
+            galleryGrid.appendChild(section);
         }
+
+        // Initialize Slideshow Event Listeners
+        document.querySelectorAll('.theme-slideshow-section').forEach(section => {
+            const wrapper = section.querySelector('.slideshow-wrapper');
+            const slides = wrapper.querySelectorAll('.slide');
+            const prevBtn = wrapper.querySelector('.slide-nav.prev');
+            const nextBtn = wrapper.querySelector('.slide-nav.next');
+            const dots = wrapper.querySelectorAll('.slide-dot');
+
+            if (slides.length <= 1) return;
+
+            let currentIndex = 0;
+            let autoplayInterval;
+
+            function showSlide(index) {
+                slides[currentIndex].classList.remove('active');
+                slides[currentIndex].style.display = 'none';
+                if (dots.length > 0) dots[currentIndex].classList.remove('active');
+
+                currentIndex = (index + slides.length) % slides.length;
+
+                slides[currentIndex].classList.add('active');
+                slides[currentIndex].style.display = 'block';
+                if (dots.length > 0) dots[currentIndex].classList.add('active');
+            }
+
+            function nextSlide() {
+                showSlide(currentIndex + 1);
+            }
+
+            function prevSlide() {
+                showSlide(currentIndex - 1);
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    nextSlide();
+                    resetAutoplay();
+                });
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    prevSlide();
+                    resetAutoplay();
+                });
+            }
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    showSlide(idx);
+                    resetAutoplay();
+                });
+            });
+
+            function startAutoplay() {
+                autoplayInterval = setInterval(nextSlide, 5000);
+            }
+
+            function resetAutoplay() {
+                clearInterval(autoplayInterval);
+                startAutoplay();
+            }
+
+            startAutoplay();
+        });
     }
 
     // Gallery Filtering Event Listeners
@@ -201,21 +327,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.classList.add('active');
 
                 const filterValue = btn.getAttribute('data-filter');
-                const galleryItems = document.querySelectorAll('.gallery-item');
+                const slideshowSections = document.querySelectorAll('.theme-slideshow-section');
 
-                galleryItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
+                slideshowSections.forEach(section => {
+                    const category = section.getAttribute('data-category');
                     if (filterValue === 'all' || category === filterValue) {
-                        item.style.display = 'block';
+                        section.style.display = 'block';
                         setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
+                            section.style.opacity = '1';
+                            section.style.transform = 'scale(1)';
                         }, 50);
                     } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.9)';
+                        section.style.opacity = '0';
+                        section.style.transform = 'scale(0.95)';
                         setTimeout(() => {
-                            item.style.display = 'none';
+                            section.style.display = 'none';
                         }, 300);
                     }
                 });
