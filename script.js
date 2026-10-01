@@ -6,17 +6,27 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelectorAll('.nav-links');
 
     if (mobileMenu && navMenu) {
+        const setMenuOpen = (open) => {
+            mobileMenu.classList.toggle('is-active', open);
+            navMenu.classList.toggle('active', open);
+            mobileMenu.setAttribute('aria-expanded', String(open));
+            mobileMenu.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
+        };
         mobileMenu.addEventListener('click', () => {
-            mobileMenu.classList.toggle('is-active');
-            navMenu.classList.toggle('active');
+            setMenuOpen(!navMenu.classList.contains('active'));
         });
 
         // Close mobile menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mobileMenu.classList.remove('is-active');
-                navMenu.classList.remove('active');
+                setMenuOpen(false);
             });
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+                setMenuOpen(false);
+                mobileMenu.focus();
+            }
         });
     }
 
@@ -158,18 +168,23 @@ document.addEventListener('DOMContentLoaded', () => {
             'eau': ['1.webp'],
             'environnement': ['1.webp'],
             'education': ['1.webp'],
-            'religion': ['mosquee.webp'],
+            'religion': ['Mosquee face 1.jpeg', 'Mosquee face 2.jpeg'],
             'routes': ['1.webp'],
             'tourisme': ['1.webp'],
             'festivites': ['1.webp'],
             'autres': []
         };
 
+        filterBtns.forEach(btn => {
+            const category = btn.getAttribute('data-filter');
+            btn.hidden = category !== 'all' && !(categoryImages[category]?.length);
+        });
+
         function getCaption(category, imgSrc) {
             const filename = imgSrc.split('/').pop().split('.')[0];
             const catName = categoryNames[category] || category;
-            if (filename === 'mosquee') {
-                return "Mosquée de Tagmout";
+            if (category === 'religion') {
+                return `Mosquée de Tagmout — ${filename.endsWith('2') ? 'vue 2' : 'vue 1'}`;
             }
             if (filename === '1' || !isNaN(filename)) {
                 return catName;
@@ -203,6 +218,11 @@ document.addEventListener('DOMContentLoaded', () => {
             mainSlideshowDots.innerHTML = '';
 
             if (currentFilteredImages.length === 0) {
+                const message = document.createElement('p');
+                message.className = 'gallery-empty';
+                message.setAttribute('role', 'status');
+                message.textContent = 'Aucune photo pour le moment.';
+                mainSlideshowContainer.appendChild(message);
                 mainSlidePrev.style.display = 'none';
                 mainSlideNext.style.display = 'none';
                 mainSlideshowDots.style.display = 'none';

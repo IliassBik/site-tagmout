@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=2.1">
+    <link rel="stylesheet" href="styles.css?v=2.2">
 </head>
 <body>
     <!-- Navbar -->
@@ -20,12 +20,12 @@
                 <img src="images/logo.webp" alt="Logo Association Tagmout n'Aït Oumzil">
                 <span>Association Tagmout n'Aït Oumzil</span>
             </a>
-            <div class="menu-toggle" id="mobile-menu">
+            <button type="button" class="menu-toggle" id="mobile-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navigation-principale">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
-            </div>
-            <ul class="nav-menu">
+            </button>
+            <ul class="nav-menu" id="navigation-principale">
                 <li><a href="index.html" class="nav-links">Accueil</a></li>
                 <li><a href="qui-sommes-nous.html" class="nav-links">Qui Sommes-Nous ?</a></li>
                 <li><a href="realisations.html" class="nav-links">Réalisations</a></li>
@@ -72,7 +72,7 @@
 
             <div class="accordion scroll-reveal">
                 <div class="accordion-item">
-                    <button class="accordion-header">Commission Gestion de l'Eau</button>
+                    <button class="accordion-header">Gestion de l'Eau</button>
                     <div class="accordion-content">
                         <ul>
                             <li>Sensibilisation sur la préservation de l'eau.</li>
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header">Commission Ressources Humaines</button>
+                    <button class="accordion-header">Ressources Humaines</button>
                     <div class="accordion-content">
                         <ul>
                             <li>Plan de formation pour le Bureau Exécutif.</li>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header">Commission Initiatives et Projets</button>
+                    <button class="accordion-header">Initiatives et Projets</button>
                     <div class="accordion-content">
                         <ul>
                             <li>Réhabilitation des trajets et panneaux de signalisation.</li>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header">Commission Hygiène & Environnement</button>
+                    <button class="accordion-header">Hygiène & Environnement</button>
                     <div class="accordion-content">
                         <ul>
                             <li>Installations de fûts d'incinération des déchets ménagers.</li>
@@ -114,7 +114,7 @@
                     </div>
                 </div>
                 <div class="accordion-item">
-                    <button class="accordion-header">Commission de la Femme</button>
+                    <button class="accordion-header">La Femme & l'Enfant</button>
                     <div class="accordion-content">
                         <ul>
                             <li>Campagnes de sensibilisation pour les femmes (développement, eau, hygiène).</li>
@@ -134,6 +134,6 @@
         </div>
     </footer>
 
-    <script src="script.js?v=2.1"></script>
+    <script src="script.js?v=2.2"></script>
 </body>
 </html>
