@@ -51,3 +51,33 @@ Statut : vérifications en cours.
 - Contrôle git diff --check : réussi ; avertissements LF/CRLF uniquement.
 - Limite : aucune nouvelle vérification du rendu navigateur pour cette opération de versionnement.
 - Préparation terminée ; commit et envoi sur origin/main exécutés à la suite de cette entrée, résultat communiqué dans le chat.
+
+## 2026-10-02 — En-tête adapté aux téléphones
+
+### Changements prévus
+- Corriger le débordement du nom de l'association dans l'en-tête mobile, préserver la lisibilité du logo et réserver la place du bouton de menu.
+- Améliorer les zones tactiles et le défilement du menu sur écran court ; renouveler la version CSS sur les six pages.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- styles.css : nom autorisé à revenir à la ligne, logo de 40 px et marges réduites sur téléphone ; bouton de menu de 44 × 44 px avec espace réservé.
+- Menu déroulant : liens tactiles élargis et défilement vertical limité à la hauteur disponible.
+- Six pages HTML : version CSS passée à 2.3.
+- Vérification dans Edge sans interface aux largeurs 270, 320, 375, 390, 600, 768, 1150 et 1440 px : en-tête contenu dans la largeur, aucune collision logo/bouton ; ouverture et fermeture par Échap réussies à toutes les largeurs mobiles.
+- Vérification des six références CSS et git diff --check : réussie.
+- Limites : pas de vérification sur téléphone physique, ni de déploiement. Le contrôle navigateur porte sur l'en-tête de l'accueil, dont les styles sont partagés par les six pages.
+
+Statut : terminé.
+
+## 2026-10-02 — Versionnement de l'en-tête mobile
+
+### Changements prévus
+- Conserver et vérifier les modifications existantes de l'en-tête mobile, puis créer un commit et l'envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Modifications existantes préservées : en-tête et menu adaptés aux téléphones, version CSS 2.3 sur les six pages.
+- Différences relues ; syntaxe JavaScript vérifiée avec succès.
+- Ligne vide finale du journal retirée après le contrôle des espaces.
+- Limite : contrôles visuels précédemment consignés non réexécutés pour ce commit.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
