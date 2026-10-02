@@ -194,3 +194,37 @@ Statut : terminé.
 - Syntaxe JavaScript et git diff --check : réussis (avertissements LF/CRLF uniquement).
 - Limite : rendu navigateur non réexécuté pour cette opération de versionnement.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-02 — Renommage et intégration des photos d’eau
+
+### Changements prévus
+- Examiner et renommer les sept nouvelles photos WhatsApp avec des noms descriptifs sans espaces ni accents.
+- Intégrer les sept photos dans la galerie Eau, ajouter leurs légendes et remplacer les références à l’ancienne image supprimée.
+- Vérifier les fichiers référencés et la syntaxe JavaScript, puis consigner les résultats.
+
+Statut : en cours.
+
+### Changements réalisés et vérifications
+- Sept photos examinées visuellement et renommées avec des noms descriptifs ; JPEG conservés sans recompression.
+- Galerie Eau : sept photos intégrées avec légendes et textes alternatifs explicites (14 photos au total).
+- Accueil : référence cassée remplacée par la vue d’ensemble de l’installation et texte alternatif adapté.
+- Version JavaScript passée de 2.5 à 2.6 sur les sept pages pour renouveler le cache.
+- Toutes les références locales HTML et les 14 photos déclarées vérifiées : aucun fichier manquant.
+- node --check script.js et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Suppression préexistante de eau/1.webp respectée ; autres images et contenus préservés.
+- Limites : rendu navigateur non vérifié ; aucun commit, envoi GitHub ou déploiement réalisé.
+
+Statut : terminé.
+
+## 2026-10-02 — Versionnement des photos des installations d'eau
+
+### Changements prévus
+- Conserver les modifications existantes : sept nouvelles photos, légendes, aperçu sur l'accueil et version JavaScript.
+- Vérifier les changements, créer un commit et l'envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Sept JPEG ajoutés en remplacement de l'ancienne photo d'eau, légendes de galerie et aperçu d'accueil actualisés ; version JavaScript 2.6 sur les sept pages.
+- Modifications de l'utilisateur et entrées précédentes conservées.
+- node --check script.js et git diff --check : réussis ; présence des sept JPEG confirmée.
+- Limite : rendu navigateur non vérifié lors de ce versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.

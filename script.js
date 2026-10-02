@@ -165,7 +165,15 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const categoryImages = {
-            'eau': ['1.webp'],
+            'eau': [
+                'installation-eau-panneaux-solaires-vue-ensemble.jpeg',
+                'panneaux-solaires-installation-eau.jpeg',
+                'installation-eau-vue-depuis-route.jpeg',
+                'ouvrage-eau-couvercle-bleu.jpeg',
+                'cloture-local-installation-eau.jpeg',
+                'terrain-arbore-abords-installation-eau.jpeg',
+                'local-panneaux-solaires-vue-arriere.jpeg'
+            ],
             'environnement': ['1.webp'],
             'education': ['1.webp'],
             'religion': ['Mosquee face 1.jpeg', 'Mosquee face 2.jpeg'],
@@ -180,7 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.hidden = category !== 'all' && !(categoryImages[category]?.length);
         });
 
+        const imageCaptions = {
+            'installation-eau-panneaux-solaires-vue-ensemble.jpeg': "Installation d’eau et panneaux solaires — vue d’ensemble",
+            'panneaux-solaires-installation-eau.jpeg': "Panneaux solaires de l’installation d’eau",
+            'installation-eau-vue-depuis-route.jpeg': "Installation d’eau — vue depuis la route",
+            'ouvrage-eau-couvercle-bleu.jpeg': "Ouvrage d’eau à couvercle bleu et clôture",
+            'cloture-local-installation-eau.jpeg': "Clôture et local de l’installation d’eau",
+            'terrain-arbore-abords-installation-eau.jpeg': "Terrain arboré aux abords de l’installation d’eau",
+            'local-panneaux-solaires-vue-arriere.jpeg': "Local et panneaux solaires — vue arrière"
+        };
+
         function getCaption(category, imgSrc) {
+            const explicitCaption = imageCaptions[imgSrc.split('/').pop()];
+            if (explicitCaption) return explicitCaption;
             const filename = imgSrc.split('/').pop().split('.')[0];
             const catName = categoryNames[category] || category;
             if (category === 'religion') {
