@@ -748,6 +748,65 @@ ul {
     font-weight: 600;
 }
 
+/* Commission overview on the home page */
+#nos-commissions .commissions-intro {
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    text-align: center;
+}
+
+.commissions-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.commission-card {
+    padding: 1.5rem 1.25rem;
+    background: var(--white);
+    border: 1px solid rgba(43, 97, 72, 0.1);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border-bottom: 3px solid rgba(43, 97, 72, 0.3);
+}
+
+.commission-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.commission-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: #edf4ef;
+    color: var(--primary);
+}
+
+.commission-icon svg { width: 26px; height: 26px; }
+.commission-number { color: var(--secondary); font-size: 0.8rem; font-weight: 600; }
+.commission-card h3 { font-size: 1.15rem; line-height: 1.35; margin-bottom: 0.8rem; }
+.commission-card p { font-size: 0.9rem; line-height: 1.7; color: var(--text-muted); }
+.commissions-action { margin-top: 2.5rem; text-align: center; }
+.commissions-action .btn { white-space: normal; }
+
+@media (max-width: 1050px) {
+    .commissions-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+    .commission-card { grid-column: span 2; }
+    .commission-card:nth-last-child(-n+2) { grid-column: span 3; }
+}
+
+@media (max-width: 600px) {
+    .commissions-grid { grid-template-columns: 1fr; }
+    .commission-card, .commission-card:nth-last-child(-n+2) { grid-column: auto; }
+    .commission-card { padding: 1.5rem; }
+    .commission-card-top { margin-bottom: 1rem; }
+}
+
 /* Galerie Section */
 .gallery-filters {
     display: flex;
@@ -1432,5 +1491,14 @@ footer p {
     
     .slide-nav.next {
         right: 0.75rem;
+    }
+}
+
+/* Keep the expanded navigation clear of the association logo. */
+@media screen and (min-width: 1151px) {
+    .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem 2rem;
     }
 }

@@ -1,5 +1,106 @@
 # Journal des changements
 
+## 2026-10-02 — Introduction des commissions sur trois lignes
+
+### Changements prévus
+- Placer « et » sur une deuxième ligne et « du bien-être de ses habitants. » sur une troisième ligne dans l'introduction des commissions.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Deux retours explicites ajoutés autour de « et » dans l'introduction sur l'accueil.
+- Présence des retours dans le HTML et `git diff --check` : vérifiés avec succès (avertissements LF/CRLF uniquement).
+- Limites : sur petit écran, les phrases peuvent se répartir sur davantage de lignes ; rendu navigateur non vérifié et aucun déploiement effectué.
+
+## 2026-10-02 — Présentation visuelle des commissions
+
+### Changements prévus
+- Remplacer l'énumération sur l'accueil par cinq cartes avec pictogrammes et descriptions courtes, adaptées aux petits écrans.
+- Conserver la phrase d'introduction modifiée par l'utilisateur et le lien vers les commissions.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Accueil : cinq cartes blanches avec pictogrammes SVG, numéros discrets et descriptions courtes ; introduction de l'utilisateur conservée et bouton maintenu.
+- Styles : palette verte et beige existante, cinq colonnes sur grand écran, disposition 3 + 2 sur tablette et une colonne sur téléphone ; version CSS 2.6 sur l'accueil.
+- Contrôle des cinq cartes et `git diff --check` : réussis (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué.
+
+## 2026-10-02 — Nos commissions sur l'accueil
+
+### Changements prévus
+- Raccourcir le libellé en « Nos commissions » dans les menus et les titres de la page dédiée.
+- Ajouter une présentation des commissions sur l'accueil après les projets d'avenir, avec un lien vers la page dédiée.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Sept menus et titres de la page dédiée renommés « Nos commissions ».
+- Accueil : section ajoutée immédiatement après les projets d'avenir, présentant les cinq domaines et un bouton « Découvrir nos commissions ».
+- Vérifications réussies : libellés des sept menus, ordre des sections, destination du bouton et `git diff --check` (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Modifications précédentes conservées.
+
+## 2026-10-02 — Projets et commissions dans le menu principal
+
+### Changements prévus
+- Ajouter deux entrées distinctes dans la navigation de toutes les pages : « Projet d'avenir » et « Nos commissions thématiques ».
+- Déplacer les commissions sur une page dédiée et retirer les onglets internes ainsi que leur code devenu inutile.
+- Adapter la navigation à l'espace disponible et vérifier les liens et contenus conservés.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Navigation des sept pages : deux liens distincts « Projet d'avenir » et « Nos commissions thématiques ».
+- Nouvelle page `commissions-thematiques.html` : cinq commissions et leurs contenus conservés ; page des projets recentrée sur l'observatoire.
+- Onglets internes et leur CSS/JavaScript retirés. Navigation sur grand écran autorisée à passer sous le logo pour éviter les collisions ; menu mobile conservé.
+- Versions CSS/JavaScript passées à 2.5 sur les sept pages.
+- Vérifications réussies : syntaxe JavaScript, `git diff --check`, présence des liens dans les sept menus, existence des cibles locales et conservation des cinq commissions.
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Modifications précédentes conservées.
+
+## 2026-10-02 — Titre des cartes des contacts
+
+### Changements prévus
+- Remplacer le titre des cartes par « Cartes de visite des contacts », selon la précision de l'utilisateur.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- `contact.html` : titre remplacé par « Cartes de visite des contacts ».
+- Présence du titre et `git diff --check` : vérifiés avec succès (avertissements LF/CRLF uniquement).
+- Limites : aucun déploiement effectué ; rendu navigateur non vérifié pour ce changement de texte.
+
+## 2026-10-02 — Chiffres, onglets et cartes de visite
+
+### Changements prévus
+- Renommer le titre en « Nos impacts en chiffres », conserver les deux libellés sur deux lignes et ajouter un second réservoir de 100 m³.
+- Séparer le projet d'avenir et les commissions thématiques dans deux onglets accessibles de la page existante.
+- Reformuler le titre des cartes de visite et vérifier les modifications.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Accueil : titre « Nos impacts en chiffres », libellés des foyers et puits conservés sur deux lignes, huitième statistique « 1 — Second réservoir de 100 m³ » ajoutée à côté du réservoir de 750 m³.
+- Page des projets : onglets « Projet d'avenir » et « Nos commissions thématiques », sélection accessible et navigation par flèches, Début et Fin. Les deux sections restent lisibles sans JavaScript.
+- Contact : titre reformulé en « Cartes de visite des membres du bureau ».
+- Versions CSS et JavaScript passées à 2.4 sur les six pages pour renouveler le cache.
+- `node --check script.js` et `git diff --check` : réussis (avertissements LF/CRLF uniquement).
+- Vérification automatisée avec objets DOM simulés : sélection initiale, changement d'onglet, navigation clavier et état des panneaux réussis ; contrôle des huit statistiques et des retours à la ligne réussi.
+- Limites : rendu visuel navigateur non vérifié ; aucun déploiement effectué. Modifications préexistantes conservées.
+
+## 2026-10-02 — Libellés des statistiques sur deux lignes
+
+### Changements prévus
+- Fixer les retours à la ligne des libellés des foyers et des puits sur l'accueil, avec deux lignes équilibrées.
+- Préserver la modification existante « Puits exploités à ce jour ».
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- `index.html` : retours explicites après « Foyers alimentés » et « Puits exploités » ; espaces insécables pour garder chacun des deux groupes sur une ligne.
+- Texte préexistant des puits conservé.
+- Contrôle des deux libellés dans le HTML et `git diff --check` : réussis (avertissements LF/CRLF uniquement).
+- Limite : rendu navigateur non vérifié ; aucun déploiement effectué.
+
 Ce fichier conserve l'historique des interventions sur le site. Ajouter une entrée avant chaque intervention, puis la compléter avec les modifications et vérifications réalisées. Ne pas supprimer les anciennes entrées.
 
 ## 2026-10-01 — Corrections après revue
@@ -80,4 +181,16 @@ Statut : terminé.
 - Différences relues ; syntaxe JavaScript vérifiée avec succès.
 - Ligne vide finale du journal retirée après le contrôle des espaces.
 - Limite : contrôles visuels précédemment consignés non réexécutés pour ce commit.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-02 — Versionnement des commissions et contenus
+
+### Changements prévus
+- Vérifier et conserver les changements actuels : page des commissions, présentation sur l'accueil, navigation, statistiques et contacts.
+- Créer le commit et l'envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Modifications existantes conservées, y compris la nouvelle page commissions-thematiques.html et les entrées précédentes du journal.
+- Syntaxe JavaScript et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Limite : rendu navigateur non réexécuté pour cette opération de versionnement.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
