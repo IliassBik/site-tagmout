@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="styles.css?v=2.5">
+    <link rel="stylesheet" href="styles.css?v=2.9">
 </head>
 <body>
     <!-- Navbar -->
@@ -61,13 +61,19 @@
                 <button class="filter-btn" data-filter="autres">📷 Autres</button>
             </div>
 
+            <div id="gallery-projects" class="gallery-projects" hidden>
+                <h2 id="gallery-projects-title">Les projets du thème</h2>
+                <div id="gallery-project-filters" class="gallery-filters" aria-labelledby="gallery-projects-title"></div>
+            </div>
+            <p id="gallery-album-label" class="gallery-album-label" aria-live="polite"></p>
+
             <div class="gallery-slideshow-container scroll-reveal" style="margin-top: 2rem;">
                 <div class="slideshow-wrapper">
                     <div class="slideshow-container" id="main-slideshow-container">
                         <!-- Dynamic slides go here -->
                     </div>
-                    <button class="slide-nav prev" id="main-slide-prev">&#10094;</button>
-                    <button class="slide-nav next" id="main-slide-next">&#10095;</button>
+                    <button class="slide-nav prev" id="main-slide-prev" aria-label="Photo précédente">&#10094;</button>
+                    <button class="slide-nav next" id="main-slide-next" aria-label="Photo suivante">&#10095;</button>
                     <div class="slide-dots" id="main-slideshow-dots">
                         <!-- Dynamic dots go here -->
                     </div>
@@ -92,6 +98,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=2.6"></script>
+    <script src="gallery-data.js?v=2.9"></script>
+    <script src="script.js?v=2.9"></script>
 </body>
 </html>

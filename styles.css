@@ -844,6 +844,38 @@ ul {
     box-shadow: var(--shadow-md);
 }
 
+.gallery-projects {
+    padding: 1.5rem;
+    background: var(--bg-light);
+    border-radius: 16px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.gallery-projects[hidden] {
+    display: none;
+}
+
+.gallery-projects h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.gallery-projects .gallery-filters {
+    margin-bottom: 0;
+}
+
+.gallery-album-label {
+    text-align: center;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.project-filter-btn:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -1449,10 +1481,15 @@ footer p {
     transform: translateX(-50%);
     display: flex;
     gap: 0.6rem;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+    flex-wrap: wrap;
+    justify-content: center;
     z-index: 10;
 }
 
 .slide-dot {
+    flex-shrink: 0;
     width: 11px;
     height: 11px;
     border-radius: 50%;

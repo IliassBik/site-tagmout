@@ -1,5 +1,37 @@
 # Journal des changements
 
+## 2026-10-03 — Galerie chronologique et photos compressées
+
+### Changements prévus
+- Générer des versions WebP adaptées au web sans modifier les photos originales.
+- Trier chaque album du plus ancien au plus récent selon les dates EXIF, puis les noms de fichiers ou la date du fichier en dernier recours.
+- Charger uniquement la photo affichée et la suivante, et adapter les points de navigation aux petits écrans.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- 63 versions WebP créées dans images/galerie-web, limitées à 1600 pixels et qualité 78 ; originaux conservés. Poids total réduit de 265,32 à 21,34 Mo (environ 92 %).
+- Nouveau manifeste gallery-data.js avec dates et albums, produit par prepare-gallery.py. Tri chronologique croissant dans les albums, les thèmes et la vue Tous.
+- Dates : 38 EXIF, 11 noms de fichiers, 14 dates de modification de fichiers faute de date de prise de vue disponible. Les 49 photos du Réservoir disposent de dates EXIF ou dans les noms.
+- Chargement à la demande de la photo affichée et de la suivante ; points de navigation sur plusieurs lignes pour les petits écrans. Versions CSS/JS de la galerie mises à jour.
+- Vérifications réussies : 63 WebP décodables et dimensions maximales, existence des chemins, ordre chronologique, filtres Tous/Eau/deux projets/Autres, syntaxe des deux JavaScript, git diff --check (avertissements LF/CRLF uniquement).
+- Limites : dates de prise de vue inconnues pour 14 photos (dont les 7 de Tizirte), tri approximatif par date du fichier ; rendu navigateur non vérifié ; aucun déploiement effectué. Relancer prepare-gallery.py après ajout de photos avec Python et Pillow.
+
+## 2026-10-03 — Photos des sous-projets de la galerie
+
+### Changements prévus
+- Relier les deux projets Hydraulique / Eau aux sous-dossiers créés par l'utilisateur et à leurs photos respectives.
+- Conserver les filtres de projets existants et vérifier les chemins des images.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Les deux albums du thème Hydraulique / Eau utilisent leurs sous-dossiers respectifs : 49 photos pour Réservoir commun Dou Mahmoud et 7 pour Projet Eau Potable Tizirte.
+- Gestion d'un sous-dossier par projet ajoutée au chargement des photos ; filtres et modifications existants conservés. Version JavaScript de la galerie passée à 2.8.
+- Syntaxe JavaScript (node --check), existence des 63 chemins de photos de la galerie et nombres de photos des deux projets : vérifiés avec succès.
+- git diff --check : réussi, avec avertissements LF/CRLF uniquement.
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Les ajouts ultérieurs de photos nécessitent une mise à jour des listes du site statique.
+
 ## 2026-10-02 — Introduction des commissions sur trois lignes
 
 ### Changements prévus
@@ -202,7 +234,14 @@ Statut : terminé.
 - Intégrer les sept photos dans la galerie Eau, ajouter leurs légendes et remplacer les références à l’ancienne image supprimée.
 - Vérifier les fichiers référencés et la syntaxe JavaScript, puis consigner les résultats.
 
-Statut : en cours.
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Les deux albums du thème Hydraulique / Eau utilisent leurs sous-dossiers respectifs : 49 photos pour Réservoir commun Dou Mahmoud et 7 pour Projet Eau Potable Tizirte.
+- Gestion d'un sous-dossier par projet ajoutée au chargement des photos ; filtres et modifications existants conservés. Version JavaScript de la galerie passée à 2.8.
+- Syntaxe JavaScript (node --check), existence des 63 chemins de photos de la galerie et nombres de photos des deux projets : vérifiés avec succès.
+- git diff --check : réussi, avec avertissements LF/CRLF uniquement.
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Les ajouts ultérieurs de photos nécessitent une mise à jour des listes du site statique.
 
 ### Changements réalisés et vérifications
 - Sept photos examinées visuellement et renommées avec des noms descriptifs ; JPEG conservés sans recompression.
@@ -227,4 +266,33 @@ Statut : terminé.
 - Modifications de l'utilisateur et entrées précédentes conservées.
 - node --check script.js et git diff --check : réussis ; présence des sept JPEG confirmée.
 - Limite : rendu navigateur non vérifié lors de ce versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-03 — Galerie organisée par thèmes et sous-projets
+
+### Changements prévus
+- Ajouter une sélection de sous-projets sous chaque thème, avec des albums indépendants.
+- Créer Réservoir commun Dou Mahmoud et Projet Eau Potable Tizirte dans Hydraulique / Eau.
+- Conserver les photos existantes sans attribuer arbitrairement les photos d’eau à un projet ; vérifier le filtrage et les références.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Les deux albums du thème Hydraulique / Eau utilisent leurs sous-dossiers respectifs : 49 photos pour Réservoir commun Dou Mahmoud et 7 pour Projet Eau Potable Tizirte.
+- Gestion d'un sous-dossier par projet ajoutée au chargement des photos ; filtres et modifications existants conservés. Version JavaScript de la galerie passée à 2.8.
+- Syntaxe JavaScript (node --check), existence des 63 chemins de photos de la galerie et nombres de photos des deux projets : vérifiés avec succès.
+- git diff --check : réussi, avec avertissements LF/CRLF uniquement.
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Les ajouts ultérieurs de photos nécessitent une mise à jour des listes du site statique.
+
+## 2026-10-03 — Versionnement de la galerie par projets
+
+### Changements prévus
+- Conserver et versionner les albums, les originaux, les WebP, le manifeste et le script de préparation.
+- Vérifier la syntaxe et les références locales ; corriger si nécessaire les chemins affectés par les déplacements, puis envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Albums par projet, 63 images WebP, originaux déplacés/ajoutés, manifeste et script de préparation inclus ; modifications existantes préservées.
+- Accueil : référence à la photo déplacée remplacée par sa version WebP existante.
+- Syntaxe des deux JavaScript, existence des 63 images du manifeste et git diff --check : réussis. Contrôle des références HTML : seul chemin manquant détecté sur l'accueil, corrigé.
+- Limite : rendu navigateur non vérifié pour ce versionnement.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.

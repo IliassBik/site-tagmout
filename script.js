@@ -144,7 +144,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // --- Dynamic Gallery Loader & Filtering ---
-    const galleryGrid = document.getElementById('gallery-grid');
     const filterBtns = document.querySelectorAll('.filter-btn');
 
     const mainSlideshowContainer = document.getElementById('main-slideshow-container');
@@ -164,29 +163,11 @@ document.addEventListener('DOMContentLoaded', () => {
             'autres': 'Autres'
         };
 
-        const categoryImages = {
-            'eau': [
-                'installation-eau-panneaux-solaires-vue-ensemble.jpeg',
-                'panneaux-solaires-installation-eau.jpeg',
-                'installation-eau-vue-depuis-route.jpeg',
-                'ouvrage-eau-couvercle-bleu.jpeg',
-                'cloture-local-installation-eau.jpeg',
-                'terrain-arbore-abords-installation-eau.jpeg',
-                'local-panneaux-solaires-vue-arriere.jpeg'
-            ],
-            'environnement': ['1.webp'],
-            'education': ['1.webp'],
-            'religion': ['Mosquee face 1.jpeg', 'Mosquee face 2.jpeg'],
-            'routes': ['1.webp'],
-            'tourisme': ['1.webp'],
-            'festivites': ['1.webp'],
-            'autres': []
-        };
-
-        filterBtns.forEach(btn => {
-            const category = btn.getAttribute('data-filter');
-            btn.hidden = category !== 'all' && !(categoryImages[category]?.length);
-        });
+        const categoryProjects = window.galleryProjects || {};
+        const projectSection = document.getElementById('gallery-projects');
+        const projectFilters = document.getElementById('gallery-project-filters');
+        const projectTitle = document.getElementById('gallery-projects-title');
+        const albumLabel = document.getElementById('gallery-album-label');
 
         const imageCaptions = {
             'installation-eau-panneaux-solaires-vue-ensemble.jpeg': "Installation d’eau et panneaux solaires — vue d’ensemble",
@@ -215,22 +196,67 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Flat array of all images
-        let allImages = [];
-        for (const [category, files] of Object.entries(categoryImages)) {
-            files.forEach(filename => {
-                const imgSrc = `images/galerie/${category}/${filename}`;
-                const caption = getCaption(category, imgSrc);
+        const allImages = [];
+        for (const [category, projects] of Object.entries(categoryProjects)) {
+            projects.forEach(project => project.images.forEach(photo => {
+                const imgSrc = photo.src;
+                const caption = getCaption(category, photo.original);
                 allImages.push({
+                    date: photo.date,
                     category,
+                    project: project.id,
                     src: imgSrc,
-                    caption
+                    caption: `${project.name} — ${caption}`
                 });
-            });
+            }));
         }
 
+        allImages.sort((a, b) => a.date.localeCompare(b.date) || a.src.localeCompare(b.src));
         let currentFilteredImages = [...allImages];
         let currentSlideIdx = 0;
         let slideshowInterval = null;
+
+        function selectAlbum(category, projectId = null) {
+            currentFilteredImages = allImages.filter(img =>
+                (category === 'all' || img.category === category) &&
+                (!projectId || img.project === projectId)
+            );
+            const project = categoryProjects[category]?.find(item => item.id === projectId);
+            albumLabel.textContent = `${project ? project.name : (categoryNames[category] || 'Tous les thèmes')} · ${currentFilteredImages.length} photo${currentFilteredImages.length > 1 ? 's' : ''}`;
+            currentSlideIdx = 0;
+            renderSlideshow();
+            resetAutoplay();
+        }
+
+        function renderProjects(category) {
+            projectFilters.replaceChildren();
+            projectSection.hidden = category === 'all';
+            if (category === 'all') return;
+            projectTitle.textContent = `Les projets : ${categoryNames[category]}`;
+            const projects = categoryProjects[category] || [];
+            if (!projects.length) {
+                const message = document.createElement('p');
+                message.textContent = 'Les projets de ce thème seront ajoutés prochainement.';
+                projectFilters.appendChild(message);
+                return;
+            }
+            const options = [{ id: null, name: 'Tous les projets' }, ...projects];
+            options.forEach(project => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.className = `filter-btn project-filter-btn${project.id === null ? ' active' : ''}`;
+                button.textContent = project.name;
+                button.setAttribute('aria-pressed', String(project.id === null));
+                button.addEventListener('click', () => {
+                    projectFilters.querySelectorAll('button').forEach(item => {
+                        item.classList.toggle('active', item === button);
+                        item.setAttribute('aria-pressed', String(item === button));
+                    });
+                    selectAlbum(category, project.id);
+                });
+                projectFilters.appendChild(button);
+            });
+        }
 
         function renderSlideshow() {
             // Clear existing slides and dots
@@ -257,7 +283,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slide.style.display = 'none';
 
                 slide.innerHTML = `
-                    <img src="${imgObj.src}" alt="${imgObj.caption}">
+                    <img data-src="${imgObj.src}" alt="${imgObj.caption}" decoding="async">
                     <div class="gallery-overlay" style="display: none;"><span>${imgObj.caption}</span></div>
                 `;
                 mainSlideshowContainer.appendChild(slide);
@@ -300,6 +326,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Wrap index
             currentSlideIdx = (index + slides.length) % slides.length;
+
+            // Fetch only the selected photo and the next one.
+            [currentSlideIdx, (currentSlideIdx + 1) % slides.length].forEach(idx => {
+                const image = slides[idx].querySelector('img');
+                if (!image.getAttribute('src')) image.src = image.dataset.src;
+            });
 
             // Show new active slide
             slides[currentSlideIdx].classList.add('active');
@@ -360,27 +392,24 @@ document.addEventListener('DOMContentLoaded', () => {
         // Event listener for category filters
         if (filterBtns.length > 0) {
             filterBtns.forEach(btn => {
+                btn.setAttribute('aria-pressed', String(btn.classList.contains('active')));
                 btn.addEventListener('click', () => {
-                    filterBtns.forEach(b => b.classList.remove('active'));
+                    filterBtns.forEach(b => {
+                        b.classList.remove('active');
+                        b.setAttribute('aria-pressed', 'false');
+                    });
                     btn.classList.add('active');
+                    btn.setAttribute('aria-pressed', 'true');
 
                     const filterValue = btn.getAttribute('data-filter');
-                    if (filterValue === 'all') {
-                        currentFilteredImages = [...allImages];
-                    } else {
-                        currentFilteredImages = allImages.filter(img => img.category === filterValue);
-                    }
-
-                    currentSlideIdx = 0;
-                    renderSlideshow();
-                    resetAutoplay();
+                    renderProjects(filterValue);
+                    selectAlbum(filterValue);
                 });
             });
         }
 
         // Initialize slideshow
-        renderSlideshow();
-        startAutoplay();
+        selectAlbum('all');
     }
 
     // --- Lightbox Visionneuse ---
