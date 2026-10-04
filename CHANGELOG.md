@@ -349,3 +349,12 @@ Statut : terminé.
 - git diff --check et node --check script.js : réussis (avertissements LF/CRLF uniquement).
 - Limites : rendu navigateur non vérifié ; réglage préexistant initial-scale=5.0 conservé, susceptible de provoquer un zoom initial important sur mobile.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-04 — Rétablissement du zoom initial de l'accueil
+
+### Changements prévus
+- Vérifier le retour du viewport à initial-scale=1.0 et publier la correction dans un nouveau commit.
+
+### Changements réalisés et vérifications
+- Correction déjà présente dans index.html conservée : initial-scale=5.0 remplacé par initial-scale=1.0.
+- Limite : rendu mobile non vérifié ; contrôle du diff effectué avant commit.
