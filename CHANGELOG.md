@@ -1,5 +1,96 @@
 # Journal des changements
 
+## 2026-10-04 — Présentation du titre des albums
+
+### Changements prévus
+- Séparer visuellement le titre et le nombre de photos avec une présentation lisible sur mobile.
+- Isoler le sens de lecture des titres arabes et du compteur français.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Titre centré sur une ligne indépendante, taille responsive et retour à la ligne pour les noms longs ; compteur dans une pastille discrète en dessous.
+- Titre isolé avec bdi et direction automatique ; compteur français isolé de gauche à droite pour éviter les inversions avec les titres arabes. Pluriel corrigé pour zéro photo.
+- Versions CSS/JavaScript actualisées ; modifications préexistantes conservées.
+- Vérifications : node --check script.js et git diff --check réussis (avertissements LF/CRLF uniquement) ; contrôle des éléments et du sens de lecture.
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué.
+
+## 2026-10-04 — Miniatures sous les photos de la galerie
+
+### Changements prévus
+- Remplacer les points par une bande de miniatures sous la photo, avec sélection directe et repérage de la photo active.
+- Conserver les flèches gauche/droite et la navigation tactile, adapter la bande aux petits écrans.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Points remplacés par une bande de miniatures cliquables sous la photo, à défilement horizontal ; sélection active encadrée et recentrée, libellés accessibles et focus clavier.
+- Flèches conservées ; gestes tactiles horizontaux ajoutés sur la photo. Dimensions des miniatures adaptées aux mobiles et chargement différé des images.
+- Versions CSS/JavaScript de la galerie actualisées. Modifications préexistantes conservées.
+- Vérifications réussies : node --check script.js, git diff --check (avertissements LF/CRLF uniquement), contrôle de la structure et des branches sans photo, une photo et plusieurs photos.
+- Limites : rendu et gestes tactiles non vérifiés dans un navigateur ; aucun déploiement effectué.
+
+## 2026-10-04 — Annulation de la navigation numérotée
+
+### Changements prévus
+- Annuler uniquement la dernière intervention et rétablir les points de navigation de la galerie.
+- Conserver les autres modifications et les entrées précédentes du journal.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Dernière intervention annulée : points, styles, position dans le diaporama, comportement pour une seule photo et versions CSS/JavaScript rétablis.
+- Nouvel album dans Autres et autres modifications conservés ; historique du journal conservé.
+- Vérifications réussies : node --check script.js et git diff --check (avertissements LF/CRLF uniquement). script.js et styles.css ne présentent plus de différence avec Git.
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué.
+
+## 2026-10-04 — Navigation numérotée des photos
+
+### Changements prévus
+- Remplacer les points du diaporama par des boutons numérotés pour chaque image.
+- Adapter leur présentation aux petits écrans et distinguer la photo active.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Points remplacés par des boutons 1, 2, 3… pour chaque photo de la sélection, y compris les albums à une seule image ; clic direct conservé.
+- Navigation placée sous les images pour éviter de les masquer, avec retour à la ligne, boutons de 44 pixels minimum et photo active mise en évidence.
+- Libellés accessibles, aria-current sur la photo active et contour de focus au clavier ajoutés. Versions CSS et JavaScript de la galerie passées à 2.11.
+- Vérifications réussies : syntaxe JavaScript avec node --check, contrôle des branches sans photo/une photo/plusieurs photos et git diff --check (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Modifications préexistantes conservées.
+
+## 2026-10-04 — Nouvel album dans Autres
+
+### Changements prévus
+- Intégrer le nouveau sous-dossier « عملية التحفيظ العقاري الجماعي بدوار تكموت » à la galerie Autres.
+- Prendre en charge ses photos HEIC, générer les versions WebP et conserver les originaux et le tri chronologique.
+- Actualiser le manifeste et vérifier les images et les chemins générés.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Album « عملية التحفيظ العقاري الجماعي بدوار تكموت » intégré à Autres avec ses 83 photos (60 HEIC, 23 JPEG), nom arabe conservé et dates du 15 mai au 29 novembre 2024.
+- Prise en charge HEIC/HEIF ajoutée à prepare-gallery.py avec pillow-heif et message explicite si la dépendance manque ; décodeur installé dans l'environnement Python.
+- Versions WebP générées pour le nouvel album (32,17 Mo), originaux conservés. Manifeste régénéré depuis les sources actuelles : 144 photos, dont une photo du réservoir repérée lors du contrôle de complétude. Version du manifeste dans galerie.html passée à 2.10.
+- Vérifications réussies : 83 photos dans Autres ; correspondance complète des 144 sources avec le manifeste ; décodage des 144 WebP, dimensions limitées à 1600 pixels, chemins existants et tri chronologique ; syntaxe de gallery-data.js et script.js ; git diff --check (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié, aucun déploiement effectué ; les 14 dates approximatives des autres albums restent fondées sur les dates des fichiers. Modifications préexistantes conservées.
+
+## 2026-10-04 — Corrections des réalisations, commissions et présentation
+
+### Changements prévus
+- Déplacer le deuxième point de l'infrastructure hydraulique en dernier.
+- Mettre les majuscules demandées aux titres Routières, Pédestres, Religieuse et Animation, ainsi qu'à Environnement dans la présentation.
+- Remplacer les deux formulations de communication par « Création d'un site web pour la communication. » et « Création d'une page Facebook pour les échanges. ».
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Deuxième point hydraulique (second réservoir de 100 m³) déplacé en cinquième et dernière position ; les cinq points sont conservés.
+- Majuscules corrigées : Infrastructures Routières et Pédestres sur l'accueil et les réalisations, Infrastructure Religieuse, Solidarité & Animation, Sauvegarde de l'Environnement dans Qui sommes-nous.
+- Deux points distincts dans la commission Ressources Humaines : « Création d'un site web pour la communication. » et « Création d'une page Facebook pour les échanges. ».
+- Vérifications réussies : nombre et ordre des points hydrauliques, présence des sept corrections textuelles, git diff --check (avertissements LF/CRLF uniquement).
+- Limites : rendu en navigateur non vérifié ; aucun déploiement effectué.
+
 ## 2026-10-04 — Ordre des chiffres clés et logo agrandi
 
 ### Changements prévus
@@ -358,3 +449,14 @@ Statut : terminé.
 ### Changements réalisés et vérifications
 - Correction déjà présente dans index.html conservée : initial-scale=5.0 remplacé par initial-scale=1.0.
 - Limite : rendu mobile non vérifié ; contrôle du diff effectué avant commit.
+
+## 2026-10-04 — Versionnement des albums et de la navigation de galerie
+
+### Changements prévus
+- Conserver les changements existants de galerie, photos, génération et contenus ; vérifier puis créer et envoyer le commit sur origin/main.
+
+### Changements réalisés et vérifications
+- Modifications existantes conservées : albums et photos, miniatures, gestes tactiles, titres bilingues, prise en charge HEIC/HEIF dans le générateur et corrections de contenu.
+- Syntaxe des deux JavaScript, existence des 144 chemins du manifeste et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur, gestes tactiles et exécution du générateur Python non revérifiés lors du versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.

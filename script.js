@@ -222,7 +222,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 (!projectId || img.project === projectId)
             );
             const project = categoryProjects[category]?.find(item => item.id === projectId);
-            albumLabel.textContent = `${project ? project.name : (categoryNames[category] || 'Tous les thèmes')} · ${currentFilteredImages.length} photo${currentFilteredImages.length > 1 ? 's' : ''}`;
+            const albumName = document.createElement('bdi');
+            albumName.className = 'gallery-album-name';
+            albumName.dir = 'auto';
+            albumName.textContent = project ? project.name : (categoryNames[category] || 'Tous les thèmes');
+            const albumCount = document.createElement('span');
+            albumCount.className = 'gallery-album-count';
+            albumCount.dir = 'ltr';
+            albumCount.textContent = `${currentFilteredImages.length} photo${currentFilteredImages.length !== 1 ? 's' : ''}`;
+            albumLabel.replaceChildren(albumName, albumCount);
             currentSlideIdx = 0;
             renderSlideshow();
             resetAutoplay();
@@ -289,13 +297,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainSlideshowContainer.appendChild(slide);
 
                 const dot = document.createElement('button');
-                dot.className = 'slide-dot';
-                dot.setAttribute('aria-label', `Diapositive ${idx + 1}`);
+                dot.className = 'slide-thumbnail';
+                dot.type = 'button';
+                dot.setAttribute('aria-label', `Photo ${idx + 1} : ${imgObj.caption}`);
+                const thumbnail = document.createElement('img');
+                thumbnail.src = imgObj.src;
+                thumbnail.alt = '';
+                thumbnail.loading = 'lazy';
+                thumbnail.decoding = 'async';
+                dot.appendChild(thumbnail);
                 mainSlideshowDots.appendChild(dot);
             });
-
-            // Show first slide
-            showSlide(0);
 
             // Show/hide controls
             if (currentFilteredImages.length <= 1) {
@@ -307,11 +319,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainSlideNext.style.display = 'flex';
                 mainSlideshowDots.style.display = 'flex';
             }
+            // Select after showing the strip so its width is available.
+            showSlide(0);
         }
 
         function showSlide(index) {
             const slides = mainSlideshowContainer.querySelectorAll('.slide');
-            const dots = mainSlideshowDots.querySelectorAll('.slide-dot');
+            const dots = mainSlideshowDots.querySelectorAll('.slide-thumbnail');
 
             if (slides.length === 0) return;
 
@@ -321,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 slides[currentSlideIdx].style.display = 'none';
                 if (dots[currentSlideIdx]) {
                     dots[currentSlideIdx].classList.remove('active');
+                    dots[currentSlideIdx].removeAttribute('aria-current');
                 }
             }
 
@@ -338,6 +353,9 @@ document.addEventListener('DOMContentLoaded', () => {
             slides[currentSlideIdx].style.display = 'block';
             if (dots[currentSlideIdx]) {
                 dots[currentSlideIdx].classList.add('active');
+                dots[currentSlideIdx].setAttribute('aria-current', 'true');
+                const activeThumbnail = dots[currentSlideIdx];
+                mainSlideshowDots.scrollLeft = activeThumbnail.offsetLeft - (mainSlideshowDots.clientWidth - activeThumbnail.offsetWidth) / 2;
             }
         }
 
@@ -375,12 +393,29 @@ document.addEventListener('DOMContentLoaded', () => {
             resetAutoplay();
         });
 
-        // Event delegation for dots navigation
+        // Swipe horizontally on the main photo; vertical page scrolling remains available.
+        let touchStart = null;
+        mainSlideshowContainer.addEventListener('touchstart', (event) => {
+            touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null;
+        }, { passive: true });
+        mainSlideshowContainer.addEventListener('touchend', (event) => {
+            if (!touchStart || !event.changedTouches.length) return;
+            const dx = event.changedTouches[0].clientX - touchStart.x;
+            const dy = event.changedTouches[0].clientY - touchStart.y;
+            touchStart = null;
+            if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+                dx < 0 ? nextSlide() : prevSlide();
+                resetAutoplay();
+            }
+        }, { passive: true });
+        mainSlideshowContainer.addEventListener('touchcancel', () => { touchStart = null; });
+
+        // Event delegation for thumbnail navigation
         mainSlideshowDots.addEventListener('click', (e) => {
-            const dot = e.target.closest('.slide-dot');
+            const dot = e.target.closest('.slide-thumbnail');
             if (dot) {
                 e.stopPropagation();
-                const dots = Array.from(mainSlideshowDots.querySelectorAll('.slide-dot'));
+                const dots = Array.from(mainSlideshowDots.querySelectorAll('.slide-thumbnail'));
                 const idx = dots.indexOf(dot);
                 if (idx !== -1) {
                     showSlide(idx);

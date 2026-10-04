@@ -7,6 +7,16 @@ from pathlib import Path
 
 from PIL import Image, ImageOps
 
+# Optional for galleries containing HEIC originals (pip install pillow-heif).
+try:
+    from pillow_heif import register_heif_opener
+except ImportError:
+    if any(path.suffix.lower() in {'.heic', '.heif'}
+           for path in (Path(__file__).resolve().parent / 'images' / 'galerie').rglob('*')):
+        raise SystemExit('Photos HEIC présentes : installer pillow-heif avec python -m pip install pillow-heif.')
+else:
+    register_heif_opener()
+
 ROOT = Path(__file__).resolve().parent
 SOURCE = ROOT / 'images' / 'galerie'
 OUTPUT = ROOT / 'images' / 'galerie-web'
@@ -48,7 +58,7 @@ for category in NAMES:
     for album in albums:
         photos = []
         for source in sorted(album.iterdir()):
-            if not source.is_file() or source.suffix.lower() not in {'.jpg', '.jpeg', '.png', '.webp'}:
+            if not source.is_file() or source.suffix.lower() not in {'.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif'}:
                 continue
             target = OUTPUT / source.relative_to(SOURCE).with_suffix(source.suffix.lower() + '.webp')
             target.parent.mkdir(parents=True, exist_ok=True)
