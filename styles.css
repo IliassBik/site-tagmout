@@ -1541,18 +1541,18 @@ footer p {
     font-size: 1.65rem;
 }
 .logo img {
-    width: 64px;
-    height: 64px;
+    width: 88px;
+    height: 88px;
 }
 .nav-menu {
     justify-content: center;
     width: 100%;
 }
 .hero-content {
-    padding-top: 145px;
+    padding-top: 169px;
 }
 html {
-    scroll-padding-top: 150px;
+    scroll-padding-top: 174px;
 }
 @media screen and (max-width: 900px) {
     .logo {
@@ -1564,7 +1564,7 @@ html {
         overflow-wrap: normal;
     }
     .logo img {
-        width: clamp(36px, 7vw, 64px);
-        height: clamp(36px, 7vw, 64px);
+        width: clamp(48px, 9vw, 88px);
+        height: clamp(48px, 9vw, 88px);
     }
 }

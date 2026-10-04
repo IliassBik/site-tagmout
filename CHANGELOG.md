@@ -1,5 +1,20 @@
 # Journal des changements
 
+## 2026-10-04 — Ordre des chiffres clés et logo agrandi
+
+### Changements prévus
+- Réordonner les huit chiffres clés selon la demande : engagement, réservoir de 750 m³, puits, foyers, familles, route, complexe religieux, second réservoir de 100 m³.
+- Agrandir le logo de l'en-tête sur ordinateur et mobile, en conservant les modifications existantes de l'utilisateur.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- Huit chiffres clés réordonnés selon la demande, avec délais d'apparition progressifs ; valeurs existantes conservées, dont 20+ familles.
+- Logo de l'en-tête agrandi de 64 à 88 pixels sur ordinateur et de 48 à 88 pixels selon la largeur sur mobile ; espacement du contenu d'accueil et des ancres ajusté.
+- Version CSS passée à 2.10 sur les sept pages pour actualiser le style en cache.
+- Vérifications réussies : ordre des huit éléments, dimensions CSS et conservation des modifications préexistantes de l'utilisateur (20+ familles et viewport initial-scale=5.0). git diff --check réussi, avec avertissements LF/CRLF uniquement.
+- Limites : rendu visuel en navigateur non vérifié ; aucun déploiement effectué.
+
 ## 2026-10-04 — En-tête sur deux lignes et corrections des textes
 
 ### Changements prévus
@@ -322,4 +337,15 @@ Statut : terminé.
 - Changements existants préservés : en-tête sur deux lignes, adaptation mobile, corrections de textes et chiffres, version CSS 2.9.
 - Syntaxe JavaScript et git diff --check : réussis (avertissements LF/CRLF uniquement).
 - Limite : rendu navigateur non vérifié lors de ce versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-04 — Versionnement du logo et des chiffres clés
+
+### Changements prévus
+- Conserver les changements existants (logo agrandi, chiffres réordonnés, 20+ familles et viewport initial-scale=5.0), vérifier les différences et envoyer un commit sur origin/main.
+
+### Changements réalisés et vérifications
+- Modifications existantes conservées ; version CSS 2.10 sur les sept pages et journal inclus.
+- git diff --check et node --check script.js : réussis (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; réglage préexistant initial-scale=5.0 conservé, susceptible de provoquer un zoom initial important sur mobile.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
