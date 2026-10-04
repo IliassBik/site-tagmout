@@ -981,7 +981,7 @@ footer p {
     }
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 900px) {
     .nav-container {
         gap: 1rem;
     }
@@ -1531,11 +1531,40 @@ footer p {
     }
 }
 
-/* Keep the expanded navigation clear of the association logo. */
-@media screen and (min-width: 1151px) {
-    .nav-container {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 1rem 2rem;
+/* Logo and association name on the first row, navigation on the second. */
+.nav-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.65rem;
+}
+.logo {
+    font-size: 1.65rem;
+}
+.logo img {
+    width: 64px;
+    height: 64px;
+}
+.nav-menu {
+    justify-content: center;
+    width: 100%;
+}
+.hero-content {
+    padding-top: 145px;
+}
+html {
+    scroll-padding-top: 150px;
+}
+@media screen and (max-width: 900px) {
+    .logo {
+        font-size: clamp(0.8rem, 3.1vw, 1.65rem);
+        gap: 0.5rem;
+    }
+    .logo span {
+        white-space: nowrap;
+        overflow-wrap: normal;
+    }
+    .logo img {
+        width: clamp(36px, 7vw, 64px);
+        height: clamp(36px, 7vw, 64px);
     }
 }

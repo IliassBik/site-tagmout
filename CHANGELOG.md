@@ -1,5 +1,21 @@
 # Journal des changements
 
+## 2026-10-04 — En-tête sur deux lignes et corrections des textes
+
+### Changements prévus
+- Agrandir le logo et le nom de l'association sur une première ligne ; placer la navigation sur la deuxième ligne et adapter les petits écrans.
+- Intégrer les corrections des quatre captures : chiffres clés, hydraulique, commissions et présentation de l'association.
+
+Statut : terminé.
+
+### Changements réalisés et vérifications
+- En-tête commun sur deux lignes : logo de 64 pixels et nom agrandi, puis onglets centrés. Sous 900 pixels, nom conservé sur une ligne avec taille adaptée et bouton de menu sur la deuxième ligne.
+- Espacement du titre d'accueil adapté ; version CSS 2.9 sur les sept pages.
+- Corrections des captures intégrées : Développement Durable, puits d'eau potable, 15+ familles soutenues sans Ramadan dans le chiffre clé, second réservoir de 100 m³ et partenaires, Assemblées Générales, Commissions de Travail Thématiques, page Facebook, route et présentation du Douar/Village.
+- Vérifications réussies : structure commune des sept pages, version CSS et présence des corrections ; syntaxe de script.js ; git diff --check (avertissements LF/CRLF uniquement).
+- Limites : rendu visuel en navigateur non vérifié ; aucun déploiement effectué.
+
+
 ## 2026-10-03 — Galerie chronologique et photos compressées
 
 ### Changements prévus
@@ -295,4 +311,15 @@ Statut : terminé.
 - Accueil : référence à la photo déplacée remplacée par sa version WebP existante.
 - Syntaxe des deux JavaScript, existence des 63 images du manifeste et git diff --check : réussis. Contrôle des références HTML : seul chemin manquant détecté sur l'accueil, corrigé.
 - Limite : rendu navigateur non vérifié pour ce versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-04 — Versionnement de l'en-tête et des corrections de contenu
+
+### Changements prévus
+- Vérifier et conserver les modifications existantes de présentation et de contenu, puis créer un commit et l'envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Changements existants préservés : en-tête sur deux lignes, adaptation mobile, corrections de textes et chiffres, version CSS 2.9.
+- Syntaxe JavaScript et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Limite : rendu navigateur non vérifié lors de ce versionnement.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
