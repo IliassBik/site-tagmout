@@ -1,5 +1,74 @@
 # Journal des changements
 
+## 2026-10-08 — Retrait de la navigation du pied de page
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Retirer la rangée de liens du pied de page des sept pages à la demande de l'utilisateur.
+- Retirer le style dédié devenu inutile et conserver les coordonnées et le copyright.
+
+### Changements réalisés et vérifications
+- Rangée de liens retirée des sept pieds de page ; style .footer-nav supprimé ; version CSS actualisée pour le cache.
+- Vérifications réussies : absence de footer-nav sur les sept pages, présence du menu principal, des coordonnées et du copyright ; git diff --check réussi (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement effectué. Entrées et modifications précédentes conservées.
+
+## 2026-10-08 — Corrections éditoriales approuvées et coordonnées
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Harmoniser les libellés approuvés et la graphie Tizirte.
+- Dater les réalisations selon les précisions de l'association.
+- Renommer Autres en Divers et traduire le titre de l'album foncier.
+- Ajouter les liens de navigation et les coordonnées validées au pied des sept pages, ainsi qu'une adresse textuelle sur Contact.
+- Conserver les photos et reporter les statuts des missions, en attente des indications de l'utilisateur.
+
+### Changements réalisés et vérifications
+- Libellés harmonisés sur les sept pages : Qui sommes-nous ?, Notre impact en chiffres, Contact et partenariats, Femmes et enfants et Tizirte.
+- Réalisations datées : réservoir 750 m³ (2001), réseau en partenariat avec le Conseil régional (2015), plusieurs puits (depuis 2015), fontaine (2006), second réservoir 100 m³ (2026), mosquée (2005), maison de l'imam (2012).
+- Galerie : Autres devient Divers ; titre français Immatriculation foncière collective à Tagmout. Générateur adapté pour conserver cette traduction à la prochaine génération, sans modifier les chemins des albums.
+- Navigation vers les sept pages et coordonnées de la bannière ajoutées aux pieds de page ; adresse, téléphones et email en texte sur Contact, avec liens d'appel et email. Styles avec retour à la ligne pour les petits écrans ; versions CSS/JS actualisées.
+- Vérifications réussies : syntaxe JavaScript des deux fichiers ; sept pieds de page ; références locales HTML et fichiers des 144 photos présents ; tableaux des photos et dates identiques à la version précédente ; anciens libellés absents des textes affichés ; git diff --check (avertissements LF/CRLF uniquement).
+- Limites : rendu et interactions en navigateur non vérifiés ; générateur de galerie non exécuté pour préserver les fichiers photographiques. Aucun déploiement. Statuts des missions et sélection des photos reportés conformément à la demande ; modifications préexistantes et entrées précédentes conservées.
+
+## 2026-10-04 — Rapport Word destiné à l’association
+
+Statut : document créé ; vérification visuelle de la pagination non disponible.
+
+### Changements prévus
+- Adapter l’audit en un document Word centré sur les contenus, les libellés, les parcours des visiteurs et les décisions à valider par l’association.
+- Exclure les constats techniques et proposer des formulations concrètes sans inventer de faits ou d’engagements.
+- Vérifier le document produit et consigner les éventuelles limites de rendu.
+
+### Changements réalisés et vérifications
+- Document créé : `Rapport-editorial-association-Tagmout-2026-10-04.docx`.
+- Adaptation éditoriale destinée au bureau : harmonisation des libellés, accueil, présentation, réalisations, observatoire, commissions, galerie, contact et tableau des validations attendues.
+- Priorités, constats, enjeux, exemples de formulation et décisions à valider conservés ; constats techniques exclus. Aucune donnée ni responsabilité nouvelle présentée comme acquise.
+- Contrôles réussis : ouverture par python-docx, intégrité ZIP et XML, présence du titre et des six sections après l’introduction, trois tableaux et recherche des termes techniques exclus.
+- Rendu tenté avec render_docx.py : échec, LibreOffice soffice.exe indisponible ; absence de binaire LibreOffice dans les dépendances embarquées. Le rendu visuel et le nombre final de pages ne sont donc pas confirmés. Des erreurs de nettoyage des dossiers temporaires ont également été signalées par le moteur.
+- Aucun contenu du site modifié ; document préparé mais non envoyé à l’association.
+
+## 2026-10-04 — Audit approfondi du site
+
+Statut : rapport livré ; validation navigateur en attente d'une URL publique.
+
+### Changements prévus
+- Créer un rapport Markdown d'audit de toutes les pages, des interactions, des contenus, de l'accessibilité, du responsive, des performances et du SEO.
+- Consigner les contrôles réalisés, les preuves, les priorités et les limites ; distinguer constats confirmés, risques à valider et propositions éditoriales.
+- Ne pas modifier le fonctionnement ni le contenu public du site dans cette intervention.
+
+### Vérifications et résultats
+- Rapport créé : `AUDIT-SITE-2026-10-04.md`, avec constats par zone, niveaux de preuve, priorités, impacts, recommandations, exemples et plan de validation.
+- Sept pages examinées, ainsi que le CSS, le JavaScript, le manifeste de galerie et le générateur Python. Comparaison de la navigation, des CTA, des contenus et des métadonnées.
+- 98 références locales HTML et 144 chemins d'images de galerie contrôlés : aucun fichier manquant ; aucun identifiant HTML dupliqué détecté par page. Syntaxe des deux JavaScript valide.
+- Mesures : 55 809 342 octets pour les images WebP du manifeste, neuf images verticales et quatorze dates issues des fichiers. Doublons photographiques confirmés par empreinte ; deux visuels représentatifs inspectés.
+- Fonction réelle de mise à jour de la visionneuse exécutée sur objets simulés : source vide confirmée pour une photo dont seul data-src est renseigné. Ce test n'est pas une recette navigateur.
+- Contrastes calculés à partir des couleurs CSS et références W3C consultées pour contraste, pause et dialogue modal.
+- Vérification documentaire : identifiants de constats uniques ; git diff --check réussi.
+- Limites explicites dans le rapport : aucun rendu ni parcours navigateur, audit lecteur d'écran, mesure réseau de production ou validation juridique. URL publique demandée ; refus antérieur d'ouverture locale respecté. Aucune qualification individuelle de toutes les photos.
+- Aucun fichier fonctionnel du site modifié, aucun déploiement effectué ; seuls le rapport et cette entrée de journal sont ajoutés/modifiés.
+
 ## 2026-10-04 — Présentation du titre des albums
 
 ### Changements prévus
@@ -459,4 +528,16 @@ Statut : terminé.
 - Modifications existantes conservées : albums et photos, miniatures, gestes tactiles, titres bilingues, prise en charge HEIC/HEIF dans le générateur et corrections de contenu.
 - Syntaxe des deux JavaScript, existence des 144 chemins du manifeste et git diff --check : réussis (avertissements LF/CRLF uniquement).
 - Limites : rendu navigateur, gestes tactiles et exécution du générateur Python non revérifiés lors du versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-08 — Versionnement des corrections éditoriales et coordonnées
+
+### Changements prévus
+- Conserver et versionner les changements du site, les coordonnées, l'audit et le rapport éditorial ; vérifier les fichiers puis envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Corrections éditoriales, coordonnées, pieds de page, libellés des albums, audit et rapport Word inclus ; modifications existantes conservées.
+- Syntaxe des deux JavaScript, existence des 144 chemins du manifeste et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Surveillance Git fsmonitor indisponible : contrôles effectués avec core.fsmonitor=false, sans changer la configuration.
+- Limites : rendu navigateur, document Word et exécution du générateur Python non revérifiés pour ce versionnement.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.

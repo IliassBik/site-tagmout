@@ -974,6 +974,35 @@ footer p {
     opacity: 0.8;
 }
 
+footer a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+    overflow-wrap: anywhere;
+}
+
+.association-address {
+    font-style: normal;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    overflow-wrap: anywhere;
+}
+
+.association-address span {
+    display: block;
+}
+
+.association-contact-details {
+    margin-top: 3rem;
+    padding: clamp(1rem, 4vw, 2rem);
+    background: var(--light-bg, #f7f5f0);
+    border-radius: var(--border-radius);
+}
+
+.association-contact-details h2 {
+    margin-bottom: 1rem;
+}
+
 /* 
    =============================================
    ANIMATIONS & RESPONSIVE

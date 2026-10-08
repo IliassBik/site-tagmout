@@ -92,7 +92,7 @@ window.galleryProjects = {
   "autres": [
     {
       "id": "autres/عملية التحفيظ العقاري الجماعي بدوار تكموت",
-      "name": "عملية التحفيظ العقاري الجماعي بدوار تكموت",
+      "name": "Immatriculation foncière collective à Tagmout",
       "images": [
         {
           "src": "images/galerie-web/autres/عملية التحفيظ العقاري الجماعي بدوار تكموت/20240515_074241.heic.webp",

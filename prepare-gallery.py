@@ -22,7 +22,8 @@ SOURCE = ROOT / 'images' / 'galerie'
 OUTPUT = ROOT / 'images' / 'galerie-web'
 NAMES = {'environnement': 'Environnement / Nature', 'education': 'Éducation / Enseignement',
          'religion': 'Mosquée de Tagmout', 'routes': 'Routes / Sentiers',
-         'tourisme': 'Tourisme', 'festivites': 'Festivités', 'autres': 'Autres', 'eau': 'Hydraulique / Eau'}
+         'tourisme': 'Tourisme', 'festivites': 'Festivités', 'autres': 'Divers', 'eau': 'Hydraulique / Eau'}
+ALBUM_NAMES = {'عملية التحفيظ العقاري الجماعي بدوار تكموت': 'Immatriculation foncière collective à Tagmout'}
 DATES = Counter()
 
 
@@ -74,7 +75,7 @@ for category in NAMES:
         if photos:
             photos.sort(key=lambda photo: (photo['date'], photo['original']))
             projects[category].append({'id': album.relative_to(SOURCE).as_posix(),
-                                      'name': NAMES[category] if album == folder else album.name,
+                                      'name': NAMES[category] if album == folder else ALBUM_NAMES.get(album.name, album.name),
                                       'images': photos})
 (ROOT / 'gallery-data.js').write_text('window.galleryProjects = ' + json.dumps(projects, ensure_ascii=False, indent=2) + ';\n', encoding='utf-8')
 print(json.dumps({'photos': sum(len(p['images']) for ps in projects.values() for p in ps),

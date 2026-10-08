@@ -160,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
             'routes': 'Routes / Sentiers',
             'tourisme': 'Tourisme',
             'festivites': 'Festivités',
-            'autres': 'Autres'
+            'autres': 'Divers'
         };
 
         const categoryProjects = window.galleryProjects || {};
