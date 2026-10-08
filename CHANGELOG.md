@@ -1,5 +1,46 @@
 # Journal des changements
 
+## 2026-10-08 — Renommage de l’album des terres
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Remplacer le titre de l’album foncier par « Conservation Commune des terres à Tagmout » dans la galerie et son générateur.
+- Conserver les photos et leurs chemins.
+
+### Changements réalisés et vérifications
+- Titre remplacé dans gallery-data.js et dans la correspondance des noms du générateur prepare-gallery.py ; photos et chemins conservés.
+- Vérifications réussies : nouveau titre présent dans les deux fichiers, ancien titre absent de ces fichiers, git diff --check réussi (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement ni régénération des photos. Entrées et modifications précédentes conservées.
+
+## 2026-10-08 — Allègement des libellés des impacts
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Retirer les dates des libellés de « Nos impacts en chiffres » à la demande de l’utilisateur après examen du rendu.
+- Conserver les chiffres, les nouveaux impacts et les dates de la page Réalisations.
+
+### Changements réalisés et vérifications
+- Dates retirées uniquement des neuf libellés datés de la section des impacts sur l’accueil ; les 11 compteurs et leurs valeurs sont conservés. Page Réalisations non modifiée lors de cette intervention.
+- Vérifications réussies : aucune date restante dans la section, 11 compteurs présents ; git diff --check réussi (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement. Entrées et modifications précédentes conservées.
+
+## 2026-10-08 — Dates et compléments des impacts et réalisations
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Conserver les compteurs, cartes et listes ; placer les dates avant les descriptions validées.
+- Intituler la section « Nos impacts en chiffres », porter les complexes religieux à 2 et ajouter la fontaine, 1 ensemble local et annexe à Tizi, et la route de 2026.
+- Dater les réalisations éducatives, hydrauliques, routières, religieuses et environnementales ; distinguer le chemin pédestre de 2025 de la route de 2026.
+
+### Changements réalisés et vérifications
+- Accueil : titre « Nos impacts en chiffres », dates en premier, compteur des complexes religieux porté à 2 ; fontaine (2006), 1 ensemble local et annexe à Tizi (2001), et route vers la Mosquée et le centre du Douar (2026) ajoutés.
+- Réalisations : dates placées en premier pour l’éducation (2001, 2004), les réservoirs (2001, 2026), la route (2006), le chemin pédestre (2025), les bâtiments religieux (2005, 2012) et l’éradication des cactus (2020). Route de 2026 distincte du chemin de 2025 dans les textes.
+- Vérifications réussies : 11 compteurs, valeur 2 pour les complexes religieux, présence de toutes les dates attendues et git diff --check (avertissements LF/CRLF uniquement). Mise en page existante conservée ; conteneur des compteurs avec retour à la ligne automatique.
+- Limites : rendu navigateur non vérifié ; aucun déploiement. Entrées précédentes et modifications de l’utilisateur conservées.
+
 ## 2026-10-08 — Retrait de la navigation du pied de page
 
 Statut : terminé ; modifications locales, sans déploiement.
@@ -541,3 +582,19 @@ Statut : terminé.
 - Surveillance Git fsmonitor indisponible : contrôles effectués avec core.fsmonitor=false, sans changer la configuration.
 - Limites : rendu navigateur, document Word et exécution du générateur Python non revérifiés pour ce versionnement.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-08 — Versionnement des impacts et réalisations
+
+### Changements prévus
+- Vérifier et conserver les nouveaux compteurs et les dates des réalisations, puis créer et envoyer un commit sur origin/main.
+
+### Changements réalisés et vérifications
+- Modifications existantes préservées : 11 compteurs, dont 2 complexes religieux, libellés sans dates sur l'accueil et dates en tête des réalisations.
+- Contrôle des 11 compteurs et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Limite : rendu navigateur non vérifié lors du versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+### Reprise du versionnement le 2026-10-08
+- Prévu : inclure également les modifications récentes du libellé de galerie et de son générateur, puis reprendre le commit et l'envoi précédemment non autorisés.
+- Réalisé : différences supplémentaires relues, syntaxe de gallery-data.js et git diff --check vérifiés avec succès ; toutes les modifications existantes conservées.
+- Limites : rendu navigateur et générateur Python non exécutés pour cette reprise.

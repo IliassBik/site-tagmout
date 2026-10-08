@@ -23,7 +23,7 @@ OUTPUT = ROOT / 'images' / 'galerie-web'
 NAMES = {'environnement': 'Environnement / Nature', 'education': 'Éducation / Enseignement',
          'religion': 'Mosquée de Tagmout', 'routes': 'Routes / Sentiers',
          'tourisme': 'Tourisme', 'festivites': 'Festivités', 'autres': 'Divers', 'eau': 'Hydraulique / Eau'}
-ALBUM_NAMES = {'عملية التحفيظ العقاري الجماعي بدوار تكموت': 'Immatriculation foncière collective à Tagmout'}
+ALBUM_NAMES = {'عملية التحفيظ العقاري الجماعي بدوار تكموت': 'Conservation Commune des terres à Tagmout'}
 DATES = Counter()
 
 
