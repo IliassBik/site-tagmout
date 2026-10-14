@@ -1,5 +1,20 @@
 # Journal des changements
 
+## 2026-10-14 — Corrections des textes d’après les captures annotées
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Conserver le retrait déjà effectué du mot « ensemble » dans le libellé du local et de l’annexe sur l’accueil.
+- Réordonner les trois premiers points hydrauliques : puits, réservoir de 2001, réseau de 2015.
+- Retirer « Depuis 2015 », « forage d’un puits et » et « du puits » conformément aux passages barrés.
+
+### Changements réalisés et vérifications
+- Réalisations : points hydrauliques réordonnés (puits, réservoir de 2001, réseau de 2015) et passages barrés retirés ; majuscule ajoutée à « Forage » en début de phrase.
+- Accueil : retrait préexistant du mot « ensemble » conservé, sans nouvelle modification de ce fichier.
+- Vérifications réussies : ordre et textes contrôlés dans le HTML, passages supprimés absents, git diff --check réussi (avertissements LF/CRLF uniquement).
+- Limites : rendu navigateur non vérifié ; aucun déploiement. Entrées précédentes et modifications de l’utilisateur conservées.
+
 ## 2026-10-08 — Renommage de l’album des terres
 
 Statut : terminé ; modifications locales, sans déploiement.
@@ -598,3 +613,14 @@ Statut : terminé.
 - Prévu : inclure également les modifications récentes du libellé de galerie et de son générateur, puis reprendre le commit et l'envoi précédemment non autorisés.
 - Réalisé : différences supplémentaires relues, syntaxe de gallery-data.js et git diff --check vérifiés avec succès ; toutes les modifications existantes conservées.
 - Limites : rendu navigateur et générateur Python non exécutés pour cette reprise.
+
+## 2026-10-14 — Versionnement des corrections de textes
+
+### Changements prévus
+- Vérifier et conserver les corrections de l'accueil et des réalisations, puis créer un commit et l'envoyer sur origin/main.
+
+### Changements réalisés et vérifications
+- Corrections existantes conservées : libellé du local et de l'annexe, ordre et formulations des réalisations hydrauliques.
+- Différences relues ; git diff --check réussi (avertissements LF/CRLF uniquement).
+- Limite : rendu navigateur non vérifié pour ce versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
