@@ -1,5 +1,22 @@
 # Journal des changements
 
+## 2026-10-14 — Navigation mobile avec toutes les rubriques visibles
+
+Statut : terminé ; modifications locales, sans déploiement.
+
+### Changements prévus
+- Appliquer la maquette validée : logo compact puis les sept rubriques visibles, sans bouton de menu sur mobile.
+- Adapter les liens aux petits écrans, raccourcir le libellé mobile de contact et indiquer la page active.
+- Vérifier la navigation commune aux sept pages et préserver les changements existants.
+
+### Changements réalisés et vérifications
+- Navigation mobile commune aux sept pages : sept liens visibles et répartis sur plusieurs lignes ; bouton hamburger et logique de dépliage retirés.
+- Logo et nom compactés ; en-tête mobile placé dans le flux avec position sticky pour ne pas masquer les titres. Libellé « Contact » sur mobile et « Contact et partenariats » sur ordinateur.
+- Page active indiquée par un soulignement et aria-current ; versions CSS et JavaScript portées à 2.16 dans les sept pages pour renouveler le cache.
+- Vérifications réussies : syntaxe JavaScript (node --check), git diff --check (avertissements LF/CRLF uniquement), contrôles Edge sans fenêtre sur sept pages à 320, 390, 600, 900 et 1440 px (35 combinaisons). Sept liens visibles, dans la largeur de l’écran, page active correcte et cibles mobiles d’au moins 44 px ; capture mobile examinée à 390 px.
+- Navigation sur trois lignes à 320 px, deux lignes à 390 et 600 px, une ligne à 900 px ; version ordinateur conservée.
+- Limites : débordements de contenu hors navigation observés à 320 px sur l’accueil, les réalisations et le contact ; non corrigés dans cette intervention. Aucun déploiement. Changements et entrées précédents conservés.
+
 ## 2026-10-14 — Corrections des textes d’après les captures annotées
 
 Statut : terminé ; modifications locales, sans déploiement.
@@ -623,4 +640,15 @@ Statut : terminé.
 - Corrections existantes conservées : libellé du local et de l'annexe, ordre et formulations des réalisations hydrauliques.
 - Différences relues ; git diff --check réussi (avertissements LF/CRLF uniquement).
 - Limite : rendu navigateur non vérifié pour ce versionnement.
+- Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.
+
+## 2026-10-14 — Versionnement de la navigation mobile
+
+### Changements prévus
+- Conserver les modifications de navigation sur les sept pages, vérifier puis créer et envoyer le commit sur origin/main.
+
+### Changements réalisés et vérifications
+- Navigation avec sept rubriques visibles sur mobile, suppression du bouton de menu, indication de page active et styles associés conservés ; journal inclus.
+- Syntaxe JavaScript et git diff --check : réussis (avertissements LF/CRLF uniquement).
+- Limites : tests navigateur précédemment consignés non réexécutés ; débordements à 320 px déjà signalés dans l'entrée précédente non corrigés dans ce commit.
 - Préparation terminée ; résultat du commit et de l'envoi communiqué dans le chat.

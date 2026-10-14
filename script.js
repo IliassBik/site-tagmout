@@ -1,34 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- Mobile Navigation Toggle ---
-    const mobileMenu = document.getElementById('mobile-menu');
-    const navMenu = document.querySelector('.nav-menu');
+    // --- Navigation shared by desktop and mobile ---
     const navLinks = document.querySelectorAll('.nav-links');
-
-    if (mobileMenu && navMenu) {
-        const setMenuOpen = (open) => {
-            mobileMenu.classList.toggle('is-active', open);
-            navMenu.classList.toggle('active', open);
-            mobileMenu.setAttribute('aria-expanded', String(open));
-            mobileMenu.setAttribute('aria-label', open ? 'Fermer le menu' : 'Ouvrir le menu');
-        };
-        mobileMenu.addEventListener('click', () => {
-            setMenuOpen(!navMenu.classList.contains('active'));
-        });
-
-        // Close mobile menu when a link is clicked
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                setMenuOpen(false);
-            });
-        });
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && navMenu.classList.contains('active')) {
-                setMenuOpen(false);
-                mobileMenu.focus();
-            }
-        });
-    }
 
     // --- Active Link Indicator ---
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
@@ -36,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const href = link.getAttribute('href');
         if (href === currentPath || (currentPath === 'index.html' && href === '#') || (currentPath === '' && href === 'index.html')) {
             link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
         } else {
             link.classList.remove('active');
+            link.removeAttribute('aria-current');
         }
     });
 
